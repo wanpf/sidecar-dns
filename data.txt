@@ -1,0 +1,31 @@
+
+# 设置域名 A 记录，TTL 60秒
+a11b22c33d44.com. 60 IN A 192.168.139.10
+
+# 设置域名 A 记录，TTL 600秒
+a11b22c33d44.com. 600 IN A 10.10.10.1
+
+# 设置域名 A 记录，TTL 600秒
+a11b22c33d44.com. 600 IN A 10.10.10.2
+
+# 设置域名 A 记录，TTL（空缺为 3600秒）
+test.a11b22c33d44.com. A 192.168.139.10
+
+# 设置域名 A 记录，(---: ) 表示禁止解析 
+---: deny.a11b22c33d44.com. A 0.0.0.0
+
+#设置域名 AAAA 记录，IPv6地址
+a11b22c33d44.com. AAAA 2405:6584:7840:800::2
+
+#设置域名 MX 记录
+a11b22c33d44.com. IN MX 10 mail1.a11b22c33d44.com.
+a11b22c33d44.com. IN MX 20 mail2.a11b22c33d44.com.
+
+#设置域名 SRV 记录
+_xmpp-client._tcp.a11b22c33d44.com. SRV 5 0 5222 a11b22c33d44.com
+
+#设置域名 TXT 记录
+a11b22c33d44.com. TXT "hello world!"
+
+#设置 PTR 反向域名解析 （以 ptr：开头）
+ptr: 192.168.139.10 a11b22c33d44.com.

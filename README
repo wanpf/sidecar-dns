@@ -1,0 +1,47 @@
+
+【介绍】
+sidecar-dns 是一个轻量级的 DNS代理服务器，支持自定义域名解析、并对外部DNS解析结果进行本地缓存。
+此版本为开发演示版本（只实现了主要功能）。
+
+【编译】
+在 Linux/x86_64、MacOS/arm64 下测试正常（其他平台尚未做测试）
+编译命令：
+make clean
+make
+
+【测试】
+运行命令：(data.txt 是自定义域名解析数据)
+./sidecar-dns 53000 1.1.1.1 53 data.txt
+
+【运行如下 dig命令，测试dns解析】
+一、测试本地数据域名解析
+
+dig @127.0.0.1 -p 53000 a11b22c33d44.com A
+
+dig @127.0.0.1 -p 53000 test.a11b22c33d44.com A
+
+dig @127.0.0.1 -p 53000 deny.a11b22c33d44.com A
+
+dig @127.0.0.1 -p 53000 a11b22c33d44.com AAAA
+
+dig @127.0.0.1 -p 53000 a11b22c33d44.com MX
+
+dig @127.0.0.1 -p 53000 _xmpp-client._tcp.a11b22c33d44.com. SRV
+
+dig @127.0.0.1 -p 53000 a11b22c33d44.com TXT
+
+dig @127.0.0.1 -p 53000 10.139.168.192.in-addr.arpa PTR
+
+二、测试外部域名解析（代理请求并进行本地缓存）
+
+dig @127.0.0.1 -p 53000 www.baidu.com A
+
+dig @127.0.0.1 -p 53000 baidu.com MX
+
+dig @127.0.0.1 -p 53000 baidu.com TXT
+
+dig @127.0.0.1 -p 53000 www.vip.com A
+
+dig @127.0.0.1 -p 53000 vip.com MX
+
+dig @127.0.0.1 -p 53000 vip.com TXT
